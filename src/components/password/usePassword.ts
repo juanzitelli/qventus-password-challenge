@@ -17,6 +17,7 @@ export const usePassword = ({
 }) => {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<string[]>([]);
+  const [isHidden, setIsHidden] = useState(true);
 
   const validatePassword = (password: string) => {
     const errorMessages = (Object.keys(requirements) as PasswordKeys[])
@@ -42,5 +43,7 @@ export const usePassword = ({
     setPassword,
     validatePassword,
     errors,
+    setIsHidden,
+    isHidden,
   };
 };
