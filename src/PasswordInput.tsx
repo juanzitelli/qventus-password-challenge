@@ -3,8 +3,10 @@ import { usePassword, type Requirements } from "./usePassword";
 
 export const PasswordInput = ({
   requirements,
+  validateOnBlur = false,
 }: {
   requirements: Requirements;
+  validateOnBlur?: boolean;
 }) => {
   const { errors, validatePassword, setPassword, password } = usePassword({
     requirements,
@@ -12,6 +14,9 @@ export const PasswordInput = ({
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+    if (validateOnBlur) {
+      validatePassword(e.target.value);
+    }
   };
 
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
@@ -24,7 +29,11 @@ export const PasswordInput = ({
         type="password"
         value={password}
         onChange={handleChange}
-        onBlur={handleBlur}
+        {...(validateOnBlur
+          ? {
+              onBlur: handleBlur,
+            }
+          : {})}
       />
       {errors.length > 0 ? (
         <ul>
