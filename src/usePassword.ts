@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const PASSWORD_RULES = {
   hasOneOrMoreSpecialCharacters: /[\W_]+/,
@@ -32,6 +32,16 @@ export const usePassword = ({
 
     setErrors(newErrors);
   };
+
+  useEffect(() => {
+    if (Object.values(requirements).length === 0) {
+      throw new Error(
+        `The requirements config object should contain at least one (1) element of the following rules: ${Object.keys(
+          PASSWORD_RULES
+        ).join(", ")}`
+      );
+    }
+  }, [requirements]);
 
   return {
     password,
