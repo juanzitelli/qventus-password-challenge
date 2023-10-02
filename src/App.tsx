@@ -1,6 +1,8 @@
-import { PasswordContextProvider } from "./PasswordContext";
-import { PasswordErrors } from "./PasswordErrors";
-import { PasswordInput } from "./PasswordInput";
+import {
+  PasswordContextProvider,
+  PasswordErrors,
+  PasswordInput,
+} from "./components/password/";
 
 export const App = () => {
   return (
