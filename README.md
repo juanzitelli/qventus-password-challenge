@@ -1,27 +1,35 @@
-# React + TypeScript + Vite
+# Qventus Take Home Assessment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This assessment serves the purpose of allowing you to show what you're capable of building in a lower pressure environment and in your preferred workspace.
 
-Currently, two official plugins are available:
+## Process
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Code your solution to the problem.
+2. Create a GitHub project under your GitHub username and push your solution.
+3. Share the project with us when you're comfortable with it. Make sure your README contains notes on how to build and run your solution. Feel free to add any assumptions you made and any future development you might suggest.
 
-## Expanding the ESLint configuration
+## Problem
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+We have numerous React frontend applications, all of which currently use their own password validation for users creating a new password. This is not ideal, as whenever there's an issue we sometimes fix it in one frontend, and not another. Recently, the security consultants have told us we need to add another constraint to all our applications on passwords, so now is the time to refactor these applications to use a single, shared library.
 
-- Configure the top-level `parserOptions` property like this:
+However, not all our applications have the same password requirements - some of our applications require longer passwords to comply with certain regulations, some require special characters and others don’t, etc.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+## Requirements
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- The React component should accept a list of password requirements as a prop, e.g options={passwordReqs}.
+
+  - The list of requirements can be flexible (has 1 or more).
+  - The following password requirements must be implemented and available in the library:
+    - Has one or more of these special characters: !@#$%^&\*
+    - Has a number / digit
+    - Has an uppercase letter
+    - _(Stretch Goal)_ Has NO consecutive letters
+
+- The component should be styled as provided, but should be extendable.
+- There should be a way for us to validate your implementation - this could be automated testing, a reference build, whatever you're comfortable with.
+
+## Final Notes
+
+- Feel free to reach out if you have any questions, we’re happy to clarify anything.
+- You can code the solution in whatever language you want, but it must be a React component, since all our applications are in React and we want to be able to re-use components.
+- This is your chance to show us what you can do, so your code should be something you’d be proud to ship. We value quality over quantity when it comes to code.

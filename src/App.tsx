@@ -1,11 +1,6 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { PasswordInput } from "./PasswordInput";
 
-function App() {
-  const [count, setCount] = useState(0);
-
+export const App = () => {
   return (
     <>
       <div>
@@ -30,6 +25,4 @@ function App() {
       </p>
     </>
   );
-}
-
-export default App;
+};
