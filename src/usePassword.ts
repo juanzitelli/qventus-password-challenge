@@ -19,18 +19,12 @@ export const usePassword = ({
   const [errors, setErrors] = useState<string[]>([]);
 
   const validatePassword = (password: string) => {
-    const newErrors: string[] = [];
+    const errorMessages = (Object.keys(requirements) as PasswordKeys[])
+      .filter((rule) => !PASSWORD_RULES[rule].test(password))
+      .map((failedRule) => requirements[failedRule]?.message)
+      .filter(Boolean) as string[];
 
-    for (const rule in requirements) {
-      if (!PASSWORD_RULES[rule as PasswordKeys].test(password)) {
-        const failedRule = requirements[rule as PasswordKeys];
-        if (failedRule) {
-          newErrors.push(failedRule.message);
-        }
-      }
-    }
-
-    setErrors(newErrors);
+    setErrors(errorMessages);
   };
 
   useEffect(() => {
