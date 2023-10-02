@@ -63,6 +63,11 @@ export const App = () => {
           id="password"
           name="password"
           validateOnBlur={validateOnBlur}
+          customClassNames={{
+            errors: {
+              listItemClassName: "text-xl",
+            },
+          }}
         />
       </form>
 

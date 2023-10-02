@@ -6,15 +6,7 @@ export const Password = ({
   validateOnBlur,
   id,
   name,
-  customClassNames: {
-    input: {
-      inputClassName,
-      containerClassName,
-      labelClassName,
-      toggleShowClassName,
-    },
-    errors: { listElementClassName, listItemClassName },
-  } = {
+  customClassNames: { input, errors } = {
     input: {},
     errors: {},
   },
@@ -24,13 +16,13 @@ export const Password = ({
   id: string;
   name: string;
   customClassNames?: {
-    input: {
+    input?: {
       inputClassName?: string;
       containerClassName?: string;
       labelClassName?: string;
       toggleShowClassName?: string;
     };
-    errors: {
+    errors?: {
       listElementClassName?: string;
       listItemClassName?: string;
     };
@@ -43,14 +35,14 @@ export const Password = ({
           validateOnBlur={validateOnBlur}
           id={id}
           name={name}
-          containerClassName={containerClassName}
-          labelClassName={labelClassName}
-          toggleShowClassName={toggleShowClassName}
-          inputClassName={inputClassName}
+          containerClassName={input?.containerClassName}
+          labelClassName={input?.labelClassName}
+          toggleShowClassName={input?.toggleShowClassName}
+          inputClassName={input?.inputClassName}
         />
         <PasswordErrors
-          listElementClassName={listElementClassName}
-          listItemClassName={listItemClassName}
+          listElementClassName={errors?.listElementClassName}
+          listItemClassName={errors?.listItemClassName}
         />
       </PasswordContextProvider>
     </>
