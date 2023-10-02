@@ -18,7 +18,7 @@ export const PasswordInput = ({
   labelClassName?: string;
   toggleShowClassName?: string;
   label?: string;
-} & Pick<HTMLInputElement, "id" | "name">) => {
+} & Pick<HTMLInputElement, "id" | "name" | "required">) => {
   const {
     setPassword,
     password,
@@ -59,7 +59,6 @@ export const PasswordInput = ({
             "border-2 border-black rounded-md bg-inherit px-2 py-1",
             inputClassName
           )}
-          required={true}
           type={isHidden ? "password" : "text"}
           value={password}
           onChange={handleChange}

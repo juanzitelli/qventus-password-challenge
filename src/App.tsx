@@ -57,6 +57,7 @@ export const App = () => {
           requirements={filteredRequirements}
           id="password"
           name="password"
+          required
           validateOnBlur={validateOnBlur}
           customClassNames={{
             errors: {

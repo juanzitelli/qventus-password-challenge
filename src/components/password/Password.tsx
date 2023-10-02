@@ -2,6 +2,7 @@ import { PasswordContextProvider, PasswordErrors, PasswordInput } from ".";
 import { Requirements } from "./usePassword";
 
 export const Password = ({
+  required = false,
   requirements,
   validateOnBlur,
   id,
@@ -11,6 +12,7 @@ export const Password = ({
     errors: {},
   },
 }: {
+  required: boolean;
   requirements: Requirements;
   validateOnBlur: boolean;
   id: string;
@@ -39,6 +41,7 @@ export const Password = ({
           labelClassName={input?.labelClassName}
           toggleShowClassName={input?.toggleShowClassName}
           inputClassName={input?.inputClassName}
+          required={required}
         />
         <PasswordErrors
           listElementClassName={errors?.listElementClassName}
