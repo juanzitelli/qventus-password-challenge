@@ -51,11 +51,6 @@ export const App = () => {
         className="flex flex-col w-full gap-5 sm:flex-row sm:max-w-xl items-start"
         onSubmit={(e: FormEvent<HTMLFormElement>) => {
           e.preventDefault();
-          const formData = new FormData(e.currentTarget);
-
-          const password = formData.get("password");
-
-          console.log({ password }, "🫢");
         }}
       >
         <Password
