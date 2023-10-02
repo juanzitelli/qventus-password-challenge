@@ -1,22 +1,32 @@
 import { clsx } from "clsx";
 import { ChangeEvent, FocusEvent } from "react";
-import {
-  FaRegEyeSlash as HideIcon,
-  FaRegEye as ShowIcon,
-} from "react-icons/fa";
+import { ShowPasswordToggle } from "./ShowPasswordToggle";
 import { usePasswordContext } from "./usePasswordContext";
 
 export const PasswordInput = ({
   validateOnBlur = false,
-  className = "",
+  inputClassName = "",
+  containerClassName = "",
+  labelClassName = "",
+  toggleShowClassName = "",
   label = "Password",
+  ...props
 }: {
   validateOnBlur?: boolean;
-  className?: string;
+  inputClassName?: string;
+  containerClassName?: string;
+  labelClassName?: string;
+  toggleShowClassName?: string;
   label?: string;
-}) => {
-  const { setPassword, password, validatePassword, isHidden, setIsHidden } =
-    usePasswordContext();
+} & Pick<HTMLInputElement, "id" | "name">) => {
+  const {
+    setPassword,
+    password,
+    validatePassword,
+    isHidden,
+    setIsHidden,
+    errors,
+  } = usePasswordContext();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -30,13 +40,24 @@ export const PasswordInput = ({
   };
 
   return (
-    <div className="flex flex-row justify-start items-end md:justify-end gap-2">
-      <label className="flex flex-col gap-1" htmlFor="label">
+    <div
+      className={clsx(
+        "flex flex-row justify-start items-end md:justify-end gap-2",
+        {
+          "border-red-600 text-red-700": errors.length > 0,
+        },
+        containerClassName
+      )}
+    >
+      <label
+        className={clsx("flex flex-col gap-1", labelClassName)}
+        htmlFor="label"
+      >
         {label}
         <input
           className={clsx(
             "border-2 border-black rounded-md bg-inherit px-2 py-1",
-            className
+            inputClassName
           )}
           required={true}
           type={isHidden ? "password" : "text"}
@@ -47,17 +68,15 @@ export const PasswordInput = ({
                 onBlur: handleBlur,
               }
             : {})}
+          {...props}
         />
       </label>
-      <button
-        className="border-2 border-black rounded-md px-2 py-1"
-        type="button"
-        onClick={() => {
-          if (password.length > 0) setIsHidden((ps) => !ps);
-        }}
-      >
-        {isHidden ? <ShowIcon /> : <HideIcon />}
-      </button>
+      <ShowPasswordToggle
+        className={clsx("", toggleShowClassName)}
+        password={password}
+        setIsHidden={setIsHidden}
+        isHidden={isHidden}
+      />
     </div>
   );
 };

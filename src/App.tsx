@@ -1,15 +1,22 @@
-import {
-  PasswordContextProvider,
-  PasswordErrors,
-  PasswordInput,
-} from "./components/password/";
+import { FormEvent } from "react";
+import { Password } from "./components/password";
 
 export const App = () => {
   return (
     <main className="flex flex-col p-3 gap-10 h-screen w-screen justify-center items-center">
       <h1 className="text-4xl font-bold">Password Component</h1>
-      <form className="flex flex-col w-full gap-5 sm:flex-row sm:max-w-xl items-start">
-        <PasswordContextProvider
+      <form
+        className="flex flex-col w-full gap-5 sm:flex-row sm:max-w-xl items-start"
+        onSubmit={(e: FormEvent<HTMLFormElement>) => {
+          e.preventDefault();
+          const formData = new FormData(e.currentTarget);
+
+          const password = formData.get("password");
+
+          console.log({ password }, "🫢");
+        }}
+      >
+        <Password
           requirements={{
             hasOneOrMoreSpecialCharacters: {
               message: "Has at least one special character like $ or @.",
@@ -24,10 +31,10 @@ export const App = () => {
               message: "Doesn't have two consecutive letters like aa or BB.",
             },
           }}
-        >
-          <PasswordInput validateOnBlur={false} />
-          <PasswordErrors />
-        </PasswordContextProvider>
+          id="password"
+          name="password"
+          validateOnBlur={true}
+        />
       </form>
     </main>
   );
