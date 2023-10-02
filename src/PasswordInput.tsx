@@ -14,7 +14,7 @@ export const PasswordInput = ({
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    if (validateOnBlur) {
+    if (!validateOnBlur) {
       validatePassword(e.target.value);
     }
   };
