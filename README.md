@@ -1,35 +1,30 @@
 # Qventus Take Home Assessment
 
-This assessment serves the purpose of allowing you to show what you're capable of building in a lower pressure environment and in your preferred workspace.
+> by [@juanzitelli](https://github.com/juanzitelli)
 
-## Process
+## Description
 
-1. Code your solution to the problem.
-2. Create a GitHub project under your GitHub username and push your solution.
-3. Share the project with us when you're comfortable with it. Make sure your README contains notes on how to build and run your solution. Feel free to add any assumptions you made and any future development you might suggest.
+This repository contains a reusable React component designed to handle password requirements for various applications. The component allows developers to easily implement consistent password validation across multiple React frontend applications.
 
-## Problem
+## Getting Started
 
-We have numerous React frontend applications, all of which currently use their own password validation for users creating a new password. This is not ideal, as whenever there's an issue we sometimes fix it in one frontend, and not another. Recently, the security consultants have told us we need to add another constraint to all our applications on passwords, so now is the time to refactor these applications to use a single, shared library.
+1.  Clone this repository.
+2.  Install dependencies using `pnpm install`
+3.  Run `pnpm test` to verify everything's working as expected by expecting all the tests to pass.
+4.  Run `pnpm dev` to run the test app in development mode. It should be available reachable at [localhost:3000](http://localhost:3000)
+5.  Done! You can play around with the app by toggling the different requirements that are listed on the main screen.
+6.  Extra: You can decide whether the validation event occurs when the user focuses outside the input or when the input changes
+7.  Extra: You can show/hide the contents of the password input by clicking on the "eye" button next to the input. You can't "show" the password if it's length is 0.
+    1. `validateOnBlur` set to `true` will validate the password when the user loses focus from the input element.
+    2. `validateOnBlur` set to `false` will validate the password when the user changes the contents of the input.
 
-However, not all our applications have the same password requirements - some of our applications require longer passwords to comply with certain regulations, some require special characters and others don’t, etc.
+## Assumptions
 
-## Requirements
+- Each application may have different password requirements.
+- Password requirements are provided as a list and can be customized.
+- The component's styling should be consistent with the provided design but allows for customization.
 
-- The React component should accept a list of password requirements as a prop, e.g options={passwordReqs}.
+## Possible features
 
-  - The list of requirements can be flexible (has 1 or more).
-  - The following password requirements must be implemented and available in the library:
-    - Has one or more of these special characters: !@#$%^&\*
-    - Has a number / digit
-    - Has an uppercase letter
-    - _(Stretch Goal)_ Has NO consecutive letters
-
-- The component should be styled as provided, but should be extendable.
-- There should be a way for us to validate your implementation - this could be automated testing, a reference build, whatever you're comfortable with.
-
-## Final Notes
-
-- Feel free to reach out if you have any questions, we’re happy to clarify anything.
-- You can code the solution in whatever language you want, but it must be a React component, since all our applications are in React and we want to be able to re-use components.
-- This is your chance to show us what you can do, so your code should be something you’d be proud to ship. We value quality over quantity when it comes to code.
+- Integration with popular form management/validation libraries (formik, react-hook-form).
+- Improved error messaging and feedback for users.
