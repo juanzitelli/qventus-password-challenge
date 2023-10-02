@@ -1,10 +1,11 @@
+import { PasswordContextProvider } from "./PasswordContext";
+import { PasswordErrors } from "./PasswordErrors";
 import { PasswordInput } from "./PasswordInput";
 
 export const App = () => {
   return (
     <>
-      <h1>Password component</h1>
-      <PasswordInput
+      <PasswordContextProvider
         requirements={{
           hasOneOrMoreSpecialCharacters: {
             message:
@@ -22,7 +23,10 @@ export const App = () => {
               "Password shouldn't include two consecutive letters like aa or BB",
           },
         }}
-      />
+      >
+        <PasswordInput validateOnBlur={true} />
+        <PasswordErrors />
+      </PasswordContextProvider>
     </>
   );
 };

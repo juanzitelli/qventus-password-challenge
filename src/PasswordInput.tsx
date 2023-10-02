@@ -1,16 +1,12 @@
 import { ChangeEvent, FocusEvent } from "react";
-import { usePassword, type Requirements } from "./usePassword";
+import { usePasswordContext } from "./usePasswordContext";
 
 export const PasswordInput = ({
-  requirements,
   validateOnBlur = false,
 }: {
-  requirements: Requirements;
   validateOnBlur?: boolean;
 }) => {
-  const { errors, validatePassword, setPassword, password } = usePassword({
-    requirements,
-  });
+  const { setPassword, password, validatePassword } = usePasswordContext();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -24,24 +20,17 @@ export const PasswordInput = ({
   };
 
   return (
-    <div>
-      <input
-        type="password"
-        value={password}
-        onChange={handleChange}
-        {...(validateOnBlur
-          ? {
-              onBlur: handleBlur,
-            }
-          : {})}
-      />
-      {errors.length > 0 ? (
-        <ul>
-          {errors.map((error, index) => (
-            <li key={index}>{error}</li>
-          ))}
-        </ul>
-      ) : null}
-    </div>
+    <input
+      style={{}}
+      required={true}
+      type="password"
+      value={password}
+      onChange={handleChange}
+      {...(validateOnBlur
+        ? {
+            onBlur: handleBlur,
+          }
+        : {})}
+    />
   );
 };
